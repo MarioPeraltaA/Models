@@ -1,0 +1,481 @@
+<!doctype html>
+<html class="no-js" lang="es">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="search.html" /><link rel="prev" title="Módulo de servicio" href="servicio.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>Módulo de dimensionamiento - P5</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">P5</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">P5</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Búsqueda" name="q" aria-label="Búsqueda">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Creación del paquete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentacion.html">Documentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datos.html">Datos de análisis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyecto.html">Proyecto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporte.html">Teoría de colas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis.html">Módulo de análisis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulacion.html">Módulo de simulación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servicio.html">Módulo de servicio</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Módulo de dimensionamiento</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="modulo-de-dimensionamiento">
+<h1>Módulo de dimensionamiento<a class="headerlink" href="#modulo-de-dimensionamiento" title="Enlace permanente a este encabezado">#</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>El número de servidores <span class="math notranslate nohighlight">\(s\)</span> y el parámetro de tiempo de servicio <span class="math notranslate nohighlight">\(\nu\)</span> pueden ser ajustados individualmente o en conjunto.</p>
+</div>
+<p>Se define una constante de proporcionalidad <span class="math notranslate nohighlight">\(E\)</span> que depende de la probabilidad acumulada si se contara con <span class="math notranslate nohighlight">\(s\)</span> servidores unicamente, para ello saca el complemento de la probabilidad que devuelve la función auxiliar <a class="reference internal" href="#cadena.dimensionamiento.probabilidades" title="cadena.dimensionamiento.probabilidades"><code class="xref py py-func docutils literal notranslate"><span class="pre">cadena.dimensionamiento.probabilidades()</span></code></a>.</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[E = \frac{\phi_{L} + D -1}{D \phi_{L}}\]</div>
+</div>
+<p>Tal que <span class="math notranslate nohighlight">\(E \phi_{L} = \frac{P}{100}\)</span> donde <span class="math notranslate nohighlight">\(D\)</span> es la proporción de probabilidades entre criterio y obtenida con <span class="math notranslate nohighlight">\(s\)</span> servidores y <span class="math notranslate nohighlight">\(P\)</span> es el porcentaje de probabilidad que define el usuario.</p>
+<span class="target" id="module-cadena.dimensionamiento"></span><p>Éste módulo dimensiona parámetros para cierto citerio de calidad.</p>
+<p>Para un sistema M/M/s, determina el número de servidores <span class="math notranslate nohighlight">\(s\)</span>
+o, a través de cierto parámetro de servicio <span class="math notranslate nohighlight">\(\nu\)</span>,
+el tiempo promedio de servicio necesarios para satisfacer
+el criterio de calidad requerido, a saber:
+Se desea tener <span class="math notranslate nohighlight">\(L_{q}\)</span> (o menos) cliente en fila
+(más los <span class="math notranslate nohighlight">\(s\)</span> del sistema que están siendo atendidos)
+al menos el <span class="math notranslate nohighlight">\(P\)</span> % del tiempo.
+En otras pabras: Dado un porcentaje del tiempo, <span class="math notranslate nohighlight">\(P\)</span>,
+si el sistema tiene más de una cantidad <span class="math notranslate nohighlight">\(L_{q}\)</span>
+de clientes en fila por una fracción de tiempo mayor
+a <span class="math notranslate nohighlight">\(\left(1 - \frac{P}{100} \right)\)</span> entonces no satisface el criterio.
+Por ejemplo, es deseado que no exista una fila de más de 5 clientes el
+95% del tiempo. Si se analiza el sistema por un periodo de tiempo de 10 minutos
+y durante un minuto la fila fue de 6 clientes o más, entonces no fue satisfecho
+el criterio, puesto que solamente el 90% del tiempo fue cumplida la condición,
+y se requería el 95%.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cadena.dimensionamiento.probabilidades">
+<span class="sig-prename descclassname"><span class="pre">cadena.dimensionamiento.</span></span><span class="sig-name descname"><span class="pre">probabilidades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cadena/dimensionamiento.html#probabilidades"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#cadena.dimensionamiento.probabilidades" title="Enlazar permanentemente con esta definición">#</a></dt>
+<dd><p>Probabilidades de estado sistema M/M/s.</p>
+<p>Función auxiliar. Determina la probabidad
+acumulada a partir del estado <span class="math notranslate nohighlight">\(i\)</span>, o sea
+la probabilidad de que la cola tenga una
+longitud al menos de <span class="math notranslate nohighlight">\(L\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>flotante</em>) – Relación de parámetros de intensidad. Se debe cumplir que:
+<span class="math notranslate nohighlight">\(\frac{\rho}{s} &lt; 1\)</span></p></li>
+<li><p><strong>L</strong> (<em>entero</em>) – Longitud promedio de la cola del sistema.</p></li>
+<li><p><strong>s</strong> (<em>entero</em>) – Número de servidores.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>probabilidad</strong> – Probabilidad acumulada de al menos <span class="math notranslate nohighlight">\(L + 1\)</span></p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>flotante</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cadena.dimensionamiento.servidores">
+<span class="sig-prename descclassname"><span class="pre">cadena.dimensionamiento.</span></span><span class="sig-name descname"><span class="pre">servidores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lam_llegada</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cadena/dimensionamiento.html#servidores"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#cadena.dimensionamiento.servidores" title="Enlazar permanentemente con esta definición">#</a></dt>
+<dd><p>Para M/M/s encuentra número de servidores mínimos requeridos.</p>
+<p>Considera el criterio de calidad especificado y los parámetros
+de arribo y servicio del sistema actual para encontrar
+la cantidad de servidores mínimos <span class="math notranslate nohighlight">\(s\)</span> que lo cumplirían.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lam_llegada</strong> (<em>flotante</em>) – Parámetro de llegada del sistema.</p></li>
+<li><p><strong>nu</strong> (<em>flotante</em>) – Parámetro de servicio actual del sistema.</p></li>
+<li><p><strong>Lq</strong> (<em>entero</em>) – Número de espacios por debajo del cual se desea que los
+clientes esperen en fila antes de recibir el servicio.</p></li>
+<li><p><strong>P</strong> (<em>entero</em>) – Porcentaje de tiempo mínimo requerido en que se desea que la
+situacción de exceso (espera de más de Lq espacios antes de
+ser atendido) se presente únicamente un
+<span class="math notranslate nohighlight">\(\left(1 - \frac{P}{100} \right)\)</span> del tiempo.
+Advertencia: <span class="math notranslate nohighlight">\(0 &lt; P &lt; 100\)</span>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>s</strong> – Cantidad de servidores mínimos que cumplen con el requerimiento.
+Advertencia: Para <span class="math notranslate nohighlight">\(s \geqslant 10\)</span> cumputacionalmente es muy demandante
+por tanto se sugiere un modelo de infinitos servidores <span class="math notranslate nohighlight">\(s\)</span> cuya
+probabilidad de estados converga en una distribución de Poisson.</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>entero</p>
+</dd>
+</dl>
+<p class="rubric">Ejemplos</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cadena</span> <span class="kn">import</span> <span class="n">dimensionamiento</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lam_llegada</span> <span class="o">=</span> <span class="mf">0.0350</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nu</span> <span class="o">=</span> <span class="mf">0.0488</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Criterios de diseño:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lq</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># Clientes en cola (esperan a ser atendidos)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span> <span class="o">=</span> <span class="mi">99</span>       <span class="c1"># Porcentaje de tiempo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># M/M/s: Aumento de servidores</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ss</span> <span class="o">=</span> <span class="n">dimensionamiento</span><span class="o">.</span><span class="n">servidores</span><span class="p">(</span><span class="n">lam_llegada</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">Lq</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cantidad de servidores mínimos requeridos: &#39;</span><span class="p">,</span> <span class="n">ss</span><span class="p">)</span>
+<span class="go">Cantidad de servidores mínimos requeridos: 5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cadena.dimensionamiento.t_servicio">
+<span class="sig-prename descclassname"><span class="pre">cadena.dimensionamiento.</span></span><span class="sig-name descname"><span class="pre">t_servicio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lam</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cadena/dimensionamiento.html#t_servicio"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#cadena.dimensionamiento.t_servicio" title="Enlazar permanentemente con esta definición">#</a></dt>
+<dd><p>Para M/M/1, tiempo promedio de servicio que cumple criterio.</p>
+<p>Si se cuenta con un único servidor, considera el criterio
+de calidad especificado y el parámetro de intensidad de
+arribo del sistema actual para encontrar
+una taza de servicio «v» tal que cumpliría el criterio
+de calidad de servicio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lam</strong> (<em>flotante</em>) – Parámetro de llegada del sistema.</p></li>
+<li><p><strong>Lq</strong> (<em>entero</em>) – Número de espacios por debajo del cual se desea que los
+clientes esperen en fila antes de recibir el servicio.</p></li>
+<li><p><strong>P</strong> (<em>entero</em>) – Porcentaje de tiempo mínimo requerido en que se desea que la
+situacción de exceso (espera de más de Lq espacios antes de
+ser atendido) se presente únicamente un
+<span class="math notranslate nohighlight">\(\left(1 - \frac{P}{100} \right)\)</span> del tiempo.
+Advertencia: <span class="math notranslate nohighlight">\(0 &lt; P &lt; 100\)</span>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>t</strong> – tiempo promedio de servicio (segundos), dedicado a cada cliente
+para que el servidor único cumpla con el criterio de calidad.
+Nota:
+Corresponde al recíproco del parámetro de intensidad mínima de servicio
+que cumple criterio.</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>entero</p>
+</dd>
+</dl>
+<p class="rubric">Ejemplos</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cadena</span> <span class="kn">import</span> <span class="n">dimensionamiento</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lam_llegada</span> <span class="o">=</span> <span class="mf">0.0350</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Criterios de diseño:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lq</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># Clientes en cola (esperan a ser atendidos)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span> <span class="o">=</span> <span class="mi">99</span>       <span class="c1"># Porcentaje de tiempo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Para M/M/1: Tiempo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">dimensionamiento</span><span class="o">.</span><span class="n">t_servicio</span><span class="p">(</span><span class="n">lam_llegada</span><span class="p">,</span> <span class="n">Lq</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">(</span><span class="s1">&#39;El servidor debe demorar </span><span class="si">{}</span><span class="s1"> segundos como máximo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">(</span><span class="s1">&#39;en asistir a cada cliente.&#39;</span><span class="p">))</span>
+<span class="go">El servidor debe demorar 15 segundos como máximo en asistir a cada cliente.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cadena.dimensionamiento.tiempo">
+<span class="sig-prename descclassname"><span class="pre">cadena.dimensionamiento.</span></span><span class="sig-name descname"><span class="pre">tiempo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lam_llegada</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Lq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cadena/dimensionamiento.html#tiempo"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#cadena.dimensionamiento.tiempo" title="Enlazar permanentemente con esta definición">#</a></dt>
+<dd><p>Para M/M/s, tiempo promedio máximo de servicio que cumple criterio.</p>
+<p>Con la cantidad de servidores de los que se dispone,
+considera el criterio especificado y los parámetros
+de intensidad del sistema actual (M/M/1),
+para encontrar el tiempo máximo que deba tardar, cada servidor
+del sistema, en asistir clientes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lam</strong> (<em>flotante</em>) – Parámetro de llegada del sistema.</p></li>
+<li><p><strong>nu</strong> (<em>flotante</em>) – Parámetro de intensidad de servicio actual del sistema.</p></li>
+<li><p><strong>Lq</strong> (<em>entero</em>) – Número de espacios por debajo del cual se desea que los
+clientes esperen en fila antes de recibir el servicio.</p></li>
+<li><p><strong>P</strong> (<em>entero</em>) – Porcentaje de tiempo mínimo requerido en que se desea que la
+situacción de exceso (espera de más de Lq espacios antes de
+ser atendido) se presente únicamente un
+<span class="math notranslate nohighlight">\(\left(1 - \frac{P}{100} \right)\)</span> del tiempo.
+Advertencia: <span class="math notranslate nohighlight">\(0 &lt; P &lt; 100\)</span>.</p></li>
+<li><p><strong>s</strong> (<em>entero</em>) – Número de servidores de los que se dispone.
+Advertencia <span class="math notranslate nohighlight">\(s \geqslant 2\)</span>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>t</strong> – Tiempo (segundos) promedio necesario de servicio a cierto
+cliente (una vez que es atendido) que satisfase
+el criterio dado cuando hay múltiples servidores.</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>entero</p>
+</dd>
+</dl>
+<p class="rubric">Ejemplos</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cadena</span> <span class="kn">import</span> <span class="n">dimensionamiento</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lam_llegada</span> <span class="o">=</span> <span class="mf">0.0350</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nu</span> <span class="o">=</span> <span class="mf">0.0488</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Criterios de diseño:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lq</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># Clientes en cola (esperan a ser atendidos)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span> <span class="o">=</span> <span class="mi">99</span>       <span class="c1"># Porcentaje de tiempo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="mi">3</span>        <span class="c1"># Servidores disponibles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># M/M/s: Disminución tiempo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">dimensionamiento</span><span class="o">.</span><span class="n">tiempo</span><span class="p">(</span><span class="n">lam_llegada</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">Lq</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">(</span><span class="s1">&#39;Si se cuenta con </span><span class="si">{}</span><span class="s1"> servidores unicamente, cada</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">(</span><span class="s1">&#39;servidor debería tardar </span><span class="si">{}</span><span class="s1"> seg. en asistir algún cliente&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
+<span class="go">Si se cuenta con 3 servidores unicamente, cada</span>
+<span class="go">servidor debería tardar 20 seg. en asistir algún cliente.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="servicio.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Módulo de servicio</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Mario R. Peralta A.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Módulo de dimensionamiento</a><ul>
+<li><a class="reference internal" href="#cadena.dimensionamiento.probabilidades"><code class="docutils literal notranslate"><span class="pre">probabilidades()</span></code></a></li>
+<li><a class="reference internal" href="#cadena.dimensionamiento.servidores"><code class="docutils literal notranslate"><span class="pre">servidores()</span></code></a></li>
+<li><a class="reference internal" href="#cadena.dimensionamiento.t_servicio"><code class="docutils literal notranslate"><span class="pre">t_servicio()</span></code></a></li>
+<li><a class="reference internal" href="#cadena.dimensionamiento.tiempo"><code class="docutils literal notranslate"><span class="pre">tiempo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

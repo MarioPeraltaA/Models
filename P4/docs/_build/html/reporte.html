@@ -1,0 +1,657 @@
+<!doctype html>
+<html class="no-js" lang="es">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="search.html" /><link rel="next" title="Módulo de proceso" href="proceso.html" /><link rel="prev" title="Proyecto" href="P4.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>Procesos aleatorios - P4</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">P4</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">P4</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Búsqueda" name="q" aria-label="Búsqueda">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="HOWTO.html">Creación del paquete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P4.html">Proyecto</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Procesos aleatorios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proceso.html">Módulo de proceso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="momentos.html">Módulo de momentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estacionaridad.html">Módulo de estacionaridad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espectro.html">Módulo de espectro</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section class="tex2jax_ignore mathjax_ignore" id="procesos-aleatorios">
+<h1>Procesos aleatorios<a class="headerlink" href="#procesos-aleatorios" title="Enlace permanente a este encabezado">#</a></h1>
+<p>Segundo ciclo del 2022.</p>
+<ul class="simple">
+<li><p>Mario R. Peralta A., B75726</p></li>
+</ul>
+<p><em>Fundamentos teóricos, Documentación y Resultados del proyecto</em></p>
+<p>La documentación completa está en <code class="docutils literal notranslate"><span class="pre">docs/_build/html/index.html</span></code>.</p>
+<section id="fundamentos-teoricos">
+<h2>1. Fundamentos teóricos<a class="headerlink" href="#fundamentos-teoricos" title="Enlace permanente a este encabezado">#</a></h2>
+<blockquote>
+<div><p>Fundamentos Matemáticos. <br></p>
+</div></blockquote>
+<section id="funcion-de-densidad-de-una-proceso-aleaotrio">
+<h3>1. Función de densidad de una proceso aleaotrio<a class="headerlink" href="#funcion-de-densidad-de-una-proceso-aleaotrio" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Se selecciona una variable aleatoria <span class="math notranslate nohighlight">\(P\)</span> para el consumo de potencia en Megawatt (Mw) con una distribución <em>genlogistic</em> a una hora particular; se hizo ésta selección con base en la experiencia del proyecto tres P3 donde se pudo ver una predominancia de distribuciones como: <strong>asymmetric Laplace</strong>, <strong>genlogistic</strong> o <strong>pearson3</strong> (entre otras) para la demanda de electricidad a una hora específica, por tanto se asumirá que la distribución de <span class="math notranslate nohighlight">\(P\)</span> para una hora arbitraria será genlogistic, por su flexibilidad, la cual tiene la siguiente función de distribución de probabilidad (PDF) estandarizada. <br></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+f_{X}(x) = c\frac{e^{-x}}{(1+e^{-x})^{c+1}}
+\]</div>
+</div>
+<p>Para <span class="math notranslate nohighlight">\(x \geq 0, c &gt; 0\)</span> donde <span class="math notranslate nohighlight">\(c\)</span> es un parámetro. O en su forma explícita, haciendo <span class="math notranslate nohighlight">\(x = (p - l) / s\)</span> y dividiendo la forma estándar entre <span class="math notranslate nohighlight">\(s\)</span>: <br></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+f_{P}(p) = c\frac{e^{-\left( \frac{p-l}{s}\right )}}{s(1+e^{-\left( \frac{p-l}{s}\right )})^{c+1}}
+\]</div>
+</div>
+<p>Donde <span class="math notranslate nohighlight">\(P\)</span> es la variable aleatoria de consumo de potencia en [Mw]. <span class="math notranslate nohighlight">\(p\)</span> es la potencia. <span class="math notranslate nohighlight">\(l\)</span> y <span class="math notranslate nohighlight">\(s\)</span> los parámetros <code class="docutils literal notranslate"><span class="pre">loc</span></code> y <code class="docutils literal notranslate"><span class="pre">scale</span></code> respectivamente.
+Luego, aunque la distribución que describe a <span class="math notranslate nohighlight">\(P\)</span> es la misma, a lo largo de <span class="math notranslate nohighlight">\(p\)</span>, los parámetro <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(l\)</span> y <span class="math notranslate nohighlight">\(s\)</span> cambian con respecto al tiempo es decir: <span class="math notranslate nohighlight">\(c = c(t)\)</span>, <span class="math notranslate nohighlight">\(l = l(t)\)</span> y <span class="math notranslate nohighlight">\(s = s(t)\)</span> de tal manera que:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+f_{P}(p) = f_{P, T}(p, t) = P(t) = c(t)\frac{e^{-\left( \frac{p-l(t)}{s(t)}\right )}}{s(t)(1+e^{-\left( \frac{p-l(t)}{s(t)}\right )})^{\left(c(t)+1 \right)}}
+\]</div>
+</div>
+<p>donde la familia de todas las funciones de <span class="math notranslate nohighlight">\(P(t)\)</span> se denomina un <strong>proceso aleatorio</strong>.</p>
+</section>
+<section id="momentos">
+<h3>1. 2. Momentos<a class="headerlink" href="#momentos" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Las funciones de correlación y covarianza cuantifican el grado de relación lineal entre un mismo proceso aleatorio en distintos de tiempo (auto) y entre dos procesos distintos (cruzada).
+Sus propiedades tienen interpretaciones importantes en el procesamiento de señales.
+Se define la autocorrelación para el proceso estocástico <span class="math notranslate nohighlight">\(X(t)\)</span>:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+R_{XX}(t_{1}, t_{2}) = E[ X_{1} X_{2}]
+\]</div>
+</div>
+<p>Por otro lado si <span class="math notranslate nohighlight">\(\tau = t_{2} - t_{1}\)</span> la función de autocovarianza (momento conjunto central de orden dos) de <span class="math notranslate nohighlight">\(X(t)\)</span> se define como:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+C_{XX}(t,t + \tau ) = R_{XX}(t,t + \tau )-E[X(t)]E[X(t + \tau )]
+\]</div>
+</div>
+</section>
+<section id="estacionaridad">
+<h3>1. 3. Estacionaridad<a class="headerlink" href="#estacionaridad" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Un proceso aleatorio se dice que es estacionario si todas sus propiedades estadísticas no cambian con el tiempo.
+Muchos problemas prácticos requieren que se trate con la función de autocorrelación y el valor medio de un proceso aleatorio. Las soluciones se simplifican mucho si tales cantidades no dependieran del tiempo absoluto. La estacionaridad de segundo orden es suficiente para garantizar estas características. Empero, es a menudo más restrictivo que necesario y es deseable una forma más <em>relajada</em> de estacionaridad. La forma más útil es el <em>proceso estacionario en sentido amplio</em>, definido como aquel que cumple los siguientes criterios:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+E[X(t)]=\bar{X}
+\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+E[X(t)X(t + \tau )]=R_{XX}(\tau )
+\]</div>
+</div>
+<p>Mientras que la ergodicidad establece la igualdad entre el promedio estadístico y el promedio temporal de un proceso aleatorio. Es una nueva forma de estacionaridad que simplifica el análisis del proceso aleatorio. Sea el operador de promedio temporal:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+A[\bullet] = \lim_{T \rightarrow \infty}\frac{1}{2T}\int_{-T}^{+T} \left[\bullet \right]  dt
+\]</div>
+</div>
+<p>El valor <span class="math notranslate nohighlight">\(\bar{x} = A\left[x(t)\right]\)</span> representa el promedio temporal de una función muestra. La función de autocorrelación temporal es denotada por <span class="math notranslate nohighlight">\(\mathscr{R}_{XX}(\tau)=A[x(t)x(t+\tau)]\)</span>. Los procesos para los que los promedios temporales igualan a los estadísticos se denominan ergódicos, luego:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+\bar{x} = \bar{X}
+\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+\mathscr{R}_{XX}(\tau)=R_{XX}(\tau)
+\]</div>
+</div>
+<p>Sin embargo en el análisis de datos no es conveniente trabajar con las funciones de densidad.
+<a class="reference external" href="https://en.wikipedia.org/wiki/Augmented_Dickey%E2%80%93Fuller_test">Augmented Dickey–Fuller test</a> es un tipo de prueba estadística llamada <a class="reference external" href="https://en.wikipedia.org/wiki/Unit_root_test">Unit Root test</a></p>
+<p>La intuición detrás de una prueba de raíz unitaria es que determina la fuerza de una secuencia se define por una tendencia.</p>
+<p>Hay una serie de pruebas de raíz unitaria y el Dickey-Fuller aumentado puede ser uno de los más ampliamente utilizados. Utiliza un modelo autorregresivo y optimiza un criterio de información a través de múltiples valores de retardo diferentes.</p>
+<p>La hipótesis nula de la prueba es que la serie temporal puede ser representada por una raíz unitaria, que no es estacionaria (tiene alguna estructura dependiente del tiempo). La hipótesis alternativa (rechazando la hipótesis nula) es que la serie temporal es estacionaria. <br></p>
+<p><strong>Hipótesis nula (H0):</strong> Si no se rechaza, sugiere que la serie temporal tiene una raíz unitaria, lo que significa que no es estacionaria. Tiene una estructura dependiente del tiempo. <br>
+<strong>Hipótesis alternativa (H1):</strong> La hipótesis nula es rechazada; sugiere que la serie temporal no tiene una raíz unitaria, lo que significa que es estacionaria. No tiene una estructura dependiente del tiempo.</p>
+<p>Interpretamos este resultado utilizando el valor <em>p</em> de la prueba. Un valor <em>p</em> por debajo de un umbral (como 5%) sugiere que rechazamos la hipótesis nula (estacionaria), de lo contrario un valor <em>p</em> por encima del umbral sugiere que no podemos rechazar la hipótesis nula (no estacionaria).</p>
+<ul class="simple">
+<li><p>p-value &gt; 0.05: No se puede rechazar la hipótesis nula (H0), los datos tienen una raíz de unidad y no son estacionarios.</p></li>
+<li><p>p-value &lt;= 0.05: Rechaza la hipótesis nula (H0), los datos no tienen una raíz unitaria y son estacionarios.</p></li>
+</ul>
+</section>
+<section id="espectro">
+<h3>1. 4. Espectro<a class="headerlink" href="#espectro" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Cuando los procesos estocásticos describen señales (funciones unidimensionales en el tiempo), es posible analizarlos según sus características espectrales, es decir, relativas a la frecuencia.
+Al tratarse de una secuencia aleatoria nos referimos a señales de tiempo discreto. Nuestros datos suelen ser muestreados y finitos, por lo que el procesamiento en tiempo discreto es el que utilizamos en la práctica.
+Consideremos una señal discreta <span class="math notranslate nohighlight">\(\vec{x} = (x_{1}, \cdots, x_{N})\)</span>, donde <span class="math notranslate nohighlight">\(N\)</span> es la longitud de la señal. Esto puede ser la señal completa o un solo miembro del agregado. Además, supongamos que la señal se muestra a la frecuencia <span class="math notranslate nohighlight">\(F_{s} = \frac{1}{\Delta t}\)</span>, donde <span class="math notranslate nohighlight">\(\Delta t\)</span> el intervalo de la muestra en horas, entonces la duración de la señal está dada por <span class="math notranslate nohighlight">\(T = (N-1)\Delta t\)</span>. Ésto nos conduce a la definición de densidad espectral de potencia para tiempo discreto a la frecuencia <span class="math notranslate nohighlight">\(f\)</span>: <br></p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+\mathcal{S}_{xx}(f) =
+\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+\frac{\left( \Delta t \right)^{2}}{T} \left |  \displaystyle\sum\limits_{n=1}^{N} x_{n}e^{-j2\pi f n \Delta t} \right| ^{2}
+\]</div>
+</div>
+</section>
+</section>
+<section id="paquete-proceso">
+<h2>2. Paquete <code class="docutils literal notranslate"><span class="pre">proceso</span></code><a class="headerlink" href="#paquete-proceso" title="Enlace permanente a este encabezado">#</a></h2>
+<blockquote>
+<div><p>Descripción general del paquete. <br></p>
+</div></blockquote>
+<section id="obtiene-la-base-de-datos-grafica-de-proceso-y-probabilidad-br">
+<h3><strong>Obtiene la base de datos, grafica de proceso y probabilidad.</strong> <br><a class="headerlink" href="#obtiene-la-base-de-datos-grafica-de-proceso-y-probabilidad-br" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p>Contiene todas las funciones necesarias para solicitar
+la base de datos del servidor API del CENCE, analizar
+una secuencia aleatoria, obtener su función de densidad
+y asumiendo que la distribución es genlogistic generar
+los parámetros de las distribuciones en el tiempo para
+una gráfica 3D de la secuencia aleatoria.</p></li>
+</ul>
+</section>
+<section id="calcula-autocorrelacion-y-autocovarianza-br">
+<h3><strong>Calcula autocorrelación y autocovarianza.</strong> <br><a class="headerlink" href="#calcula-autocorrelacion-y-autocovarianza-br" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p>Para una secuencia aleatoria dada calcula el grado de linealidad
+y disperción gracias al concepto de momentos.</p></li>
+</ul>
+</section>
+<section id="para-una-secuencia-aleatoria-se-evalua-cuan-dependiente-del-tiempo-es-br">
+<h3><strong>Para una secuencia aleatoria se evalúa cuan dependiente del tiempo és.</strong> <br><a class="headerlink" href="#para-una-secuencia-aleatoria-se-evalua-cuan-dependiente-del-tiempo-es-br" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p>Gracias a los conceptos de proceso Estacionario en el Sentido Amplio
+(wss) y Ergodicidad (conociendo el promedio temporal) es posible
+estimar cuan estacionaria es las secuencia aleatoria dada.</p></li>
+</ul>
+</section>
+<section id="densidad-espectral-de-potencia-a-partir-de-funcion-muestra-br">
+<h3><strong>Densidad Espectral de Potencia a partir de funcion muestra.</strong> <br><a class="headerlink" href="#densidad-espectral-de-potencia-a-partir-de-funcion-muestra-br" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p>Por la definición matemática de la densidad espectral de potencia (spd)
+calcula la función y gráfica cuando los datos son finitos y discretos.</p></li>
+</ul>
+</section>
+</section>
+<section id="modulos-y-sus-funciones">
+<h2>3. Módulos y sus Funciones<a class="headerlink" href="#modulos-y-sus-funciones" title="Enlace permanente a este encabezado">#</a></h2>
+<blockquote>
+<div><p>Contenido del paquete. <br></p>
+</div></blockquote>
+<p>El paquete cuenta con cuatro módulos a saber: <code class="docutils literal notranslate"><span class="pre">proceso</span></code>, <code class="docutils literal notranslate"><span class="pre">momento</span></code>, <code class="docutils literal notranslate"><span class="pre">estacionaridad</span></code> y <code class="docutils literal notranslate"><span class="pre">espectro</span></code>:</p>
+<section id="proceso">
+<h3>3. 1 <code class="docutils literal notranslate"><span class="pre">proceso</span></code><a class="headerlink" href="#proceso" title="Enlace permanente a este encabezado">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">datos_demanda()</span></code>: Solicita datos de potencia [MW] consumida.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datos_hora()</span></code>: Obtener los datos de consumo de potencia de una hora particular.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demanda()</span></code>: Arreglo de muestras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parametros()</span></code>: Parámetros de la distribución de consumo de cada hora.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modelo_parmtrs()</span></code>: Modelo polinómico de los parámetros como función del tiempo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_parmtrs()</span></code>: Grafica comparativa entre parámetros reales y aproximados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plotpdf_datos_modelo()</span></code>: Compara las distribuciones resultantes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">densidad()</span></code>: Conjunto de distribuciones que describen la secuencia aleatoria.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_p_hora()</span></code>: Grafica del proceso aleatorio en un instante.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grafica()</span></code>: Grafica 3D de la secuencia aleatoria.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">probabilidad()</span></code>: Encuentra la probabilidad de ocurrencia de un valor.</p></li>
+</ol>
+</section>
+<section id="id1">
+<h3>3. 2 <code class="docutils literal notranslate"><span class="pre">momentos</span></code><a class="headerlink" href="#id1" title="Enlace permanente a este encabezado">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">momentos()</span></code>: Calcular autocorrelación y autocovarianza.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h3>3. 3 <code class="docutils literal notranslate"><span class="pre">estacionaridad</span></code><a class="headerlink" href="#id2" title="Enlace permanente a este encabezado">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wss()</span></code>: Determina si el proceso aleatorio dado es <em>wss</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prom_temporal()</span></code>: Dada una función muestra determina el promedio temporal.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ergodicidad()</span></code>: Determina si un proceso es ergódico.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>3. 4 <code class="docutils literal notranslate"><span class="pre">espectro</span></code><a class="headerlink" href="#id3" title="Enlace permanente a este encabezado">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">psd()</span></code>: Calcula y grafica la Densidad Espectral de Potencia <em>(psd)</em>.</p></li>
+</ol>
+</section>
+</section>
+<section id="resultados">
+<h2>4. Resultados<a class="headerlink" href="#resultados" title="Enlace permanente a este encabezado">#</a></h2>
+<blockquote>
+<div><p>Análisis de resultados y conclusiones. <br></p>
+</div></blockquote>
+<section id="id4">
+<h3>4. 1 <code class="docutils literal notranslate"><span class="pre">proceso</span></code><a class="headerlink" href="#id4" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Gracias a la función <code class="docutils literal notranslate"><span class="pre">modelo_parmtrs()</span></code> del módulo proceso se encuentran los modelos continuos en función del tiempo de los parámetros del proceso aleatorio para una familia de distribuciones <code class="docutils literal notranslate"><span class="pre">genlogistic</span></code> definida en la sección Fundamentos teóricos.</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+c(t) = 0.21 - 0.06t - 0.89t² +
+0.48t³ + 4.35t⁴ - 1.72t⁵ -
+3.08t⁶ + 1.24t⁷
+\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+loc(t) = 1578.10 + 73.59t - 913.80t² +
+1627.63t³ + 635.63t⁴ - 2417.37t⁵ -
+224.04t⁶ + 757.14t⁷
+\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+scale(t) = 18.33 - 2.27t - 13.04t² +
+10.25t³ + 88.90t⁴ + 26.12t⁵ -
+71.55t⁶ - 34.73t⁷
+\]</div>
+</div>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/pfig_1.svg"><img alt="parmtr c" height="200px" src="_images/pfig_1.svg" width="400px" /></a>
+<figcaption>
+<p><span class="caption-text">Parámetro <em>c</em></span><a class="headerlink" href="#id7" title="Enlace permanente a esta imagen">#</a></p>
+<div class="legend">
+<p>Modelo polinómico aproximado en tiempo continuo de <em>c</em></p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/pfig_2.svg"><img alt="parmtr loc" height="200px" src="_images/pfig_2.svg" width="400px" /></a>
+<figcaption>
+<p><span class="caption-text">Parámetro <em>loc</em></span><a class="headerlink" href="#id8" title="Enlace permanente a esta imagen">#</a></p>
+<div class="legend">
+<p>Modelo polinómico aproximado en tiempo continuo de <em>loc</em></p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="_images/pfig_3.svg"><img alt="parmtr scale" height="200px" src="_images/pfig_3.svg" width="400px" /></a>
+<figcaption>
+<p><span class="caption-text">Parámetro <em>scale</em></span><a class="headerlink" href="#id9" title="Enlace permanente a esta imagen">#</a></p>
+<div class="legend">
+<p>Modelo polinómico aproximado en tiempo continuo de <em>scale</em></p>
+</div>
+</figcaption>
+</figure>
+<p>Mientras que la secuencia aleaoria resultante es:</p>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="_images/p3D.svg"><img alt="Grafica de secuencia 3D" height="200px" src="_images/p3D.svg" width="450px" /></a>
+<figcaption>
+<p><span class="caption-text">Secuencia aleatoria</span><a class="headerlink" href="#id10" title="Enlace permanente a esta imagen">#</a></p>
+<div class="legend">
+<p>Evolución de la <em>PDF</em> de demanda de potencia a lo largo de las horas.</p>
+</div>
+</figcaption>
+</figure>
+<p>En la que se observa que cuando el día comienza (horas 0:00, 1:00 y 3:00am) hay bastantes personas consumiendo poca potencia [MW], pero cuanto más avanza el día hay un desplazamiento positivo en el eje de consumo de potencia no obstante la demanda decae, es decir hay algunas personas consumiendo bastante electricidad hasta que se llega aproximadamente a la hora 13:00, donde aunque comienza a decaer un poco el consumo de [MW] la demanda se mantiene lo que significa que hay algunas personas consumiendo mucha potencia. Al caer la hora 20:00 hasta las 23:00 se observa un aumento en la demanda pero de menor potencia, o sea muchas personas consumiento algo de energía. Lo cual tiene sentido si se tiene en cuenta que Las Industrias mayormente son de horario matutino (7:00-14:00) y produncen un consumo pico sin que por ello implique un aumento en la población.</p>
+<p>Por otro lado gracias a la función <code class="docutils literal notranslate"><span class="pre">densidad()</span></code> y <code class="docutils literal notranslate"><span class="pre">probabilidad()</span></code> del mismo módulo es posible determinar por ejemplo la probabilidad de registrar un consumo de potencia <span class="math notranslate nohighlight">\(800 &lt; C &lt; 900\)</span> [MW] entre las 7:00 am y las 10:59 am, la que resulta en un valor de <span class="math notranslate nohighlight">\(0.4944\)</span>%, que tiene sentido ya que en horas matutinas es cuando más potencia se consume, por lo que se mecionó anteriormente, con un consumo promedio superior a los 1 300 [MW], de ahí que le evento de que ocurra un consumo tan escaso en horas matutina sea poco probable. La probabilidad hubiera aumentado se repite el experimento en horas de la madrugada de 0:00 a 3:59 am y de hecho lo hace con una nueva probabilidad del <span class="math notranslate nohighlight">\(13.7985\)</span> %.</p>
+</section>
+<section id="momento">
+<h3>4. 2 <code class="docutils literal notranslate"><span class="pre">momento</span></code><a class="headerlink" href="#momento" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Para la autocorrelación y autocovarianza basta con evaluar la misma variable aleatoria (consumo de potencia a una hora particular) en horas diferentes de la misma secuencia <span class="math notranslate nohighlight">\(P(t)\)</span>, por consistencia se toman las horas sugeridas: 7:00am y 11:00am con la función del mismo nombre <code class="docutils literal notranslate"><span class="pre">momento()</span></code> con los resultados:</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+R_{XX} &amp;= 1763866.9174\\
+C_{XX} &amp;= 11061.3470
+\end{align*}
+\end{split}\]</div>
+</div>
+<p>Es arriesgado concluir que tan lineal es toda la secuencia aleatoria a partir de dos horas solamente. Para asegurarse del grado de linealidad es necerio profundizar en el análisis de estacionaridad de al menos una función muestra como se realiza en el módulo a continuación.</p>
+</section>
+<section id="id5">
+<h3>4. 3 <code class="docutils literal notranslate"><span class="pre">estacionaridad</span></code><a class="headerlink" href="#id5" title="Enlace permanente a este encabezado">#</a></h3>
+<p>De las funciones <code class="docutils literal notranslate"><span class="pre">wss()</span></code> y <code class="docutils literal notranslate"><span class="pre">ergodicidad()</span></code> se determina que el proceso es ambos: Estacionario en el Sentido Amplio y Ergódico, esto implica al menos:<br></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- La secuencia genera una serie de observaciones estacionarias.
+
+- Tanto el valor medio como la varianza se mantienen constantes.
+
+- La secuencia no exhibe una tendencia. 
+
+- La secuencia no exhibe estacionaridad sólo por momentos.
+
+- Estrictamente estacional, o sea que la unión de las distribuciones
+  depende solamente del lapso de tiempo entre dos instantes
+  de tiempo arbitrarios.
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>4. 4 <code class="docutils literal notranslate"><span class="pre">espectro</span></code><a class="headerlink" href="#id6" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Aprovechando que el proceso sólo depende de <span class="math notranslate nohighlight">\(\Delta t\)</span> la función <code class="docutils literal notranslate"><span class="pre">spd()</span></code> utiliza la definición de densidad espectral de potencia mostrada en la sección de Fundamentos Teóricos para obtener la función de <span class="math notranslate nohighlight">\(S_{PP}(f)\)</span> en el dominio de la frecuencia <span class="math notranslate nohighlight">\(f\)</span>. En la gráfica se distingue el impulso típico de funciones espectrales.</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="_images/psdplot.svg"><img alt="Grafica psd" height="200px" src="_images/psdplot.svg" width="400px" /></a>
+<figcaption>
+<p><span class="caption-text">Densidad espectral de potencia (psd)</span><a class="headerlink" href="#id11" title="Enlace permanente a esta imagen">#</a></p>
+<div class="legend">
+<p>En el dominio de la frecuencia la potencia es la misma que en el dominio del tiempo.</p>
+</div>
+</figcaption>
+</figure>
+<p>Por medio de la siguiente definición es posible corroborar que la potencia promedio de la secuencia <span class="math notranslate nohighlight">\(P\)</span> se puede calcular en el dominio de la frecuencia o del tiempo, con la función <code class="docutils literal notranslate"><span class="pre">prom_temporal()</span></code> se optiene menos de un 5% de error.</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P_{PP} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \mathcal{S}_ {PP}(\omega)d\omega \\
+\end{split}\]</div>
+</div>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[
+P_{PP} = \lim_{T \rightarrow \infty}\frac{1}{2T}\int_{-T}^{+T} E\left[X^2(t) \right]  dt
+\]</div>
+</div>
+</section>
+</section>
+<section id="referencias">
+<h2>5. Referencias<a class="headerlink" href="#referencias" title="Enlace permanente a este encabezado">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.genlogistic.html">scipy.stats.genlogistic</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Augmented_Dickey%E2%80%93Fuller_test">Augmented Dickey–Fuller test</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Unit_root_test">Unit root test</a></p></li>
+<li><p><a class="reference external" href="https://pythondata.com/stationary-data-tests-for-time-series-forecasting/">Stationary Data Tests</a></p></li>
+</ol>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="proceso.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Módulo de proceso</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="P4.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Proyecto</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Mario R. Peralta A.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Procesos aleatorios</a><ul>
+<li><a class="reference internal" href="#fundamentos-teoricos">1. Fundamentos teóricos</a><ul>
+<li><a class="reference internal" href="#funcion-de-densidad-de-una-proceso-aleaotrio">1. Función de densidad de una proceso aleaotrio</a></li>
+<li><a class="reference internal" href="#momentos">1. 2. Momentos</a></li>
+<li><a class="reference internal" href="#estacionaridad">1. 3. Estacionaridad</a></li>
+<li><a class="reference internal" href="#espectro">1. 4. Espectro</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#paquete-proceso">2. Paquete <code class="docutils literal notranslate"><span class="pre">proceso</span></code></a><ul>
+<li><a class="reference internal" href="#obtiene-la-base-de-datos-grafica-de-proceso-y-probabilidad-br"><strong>Obtiene la base de datos, grafica de proceso y probabilidad.</strong> <br></a></li>
+<li><a class="reference internal" href="#calcula-autocorrelacion-y-autocovarianza-br"><strong>Calcula autocorrelación y autocovarianza.</strong> <br></a></li>
+<li><a class="reference internal" href="#para-una-secuencia-aleatoria-se-evalua-cuan-dependiente-del-tiempo-es-br"><strong>Para una secuencia aleatoria se evalúa cuan dependiente del tiempo és.</strong> <br></a></li>
+<li><a class="reference internal" href="#densidad-espectral-de-potencia-a-partir-de-funcion-muestra-br"><strong>Densidad Espectral de Potencia a partir de funcion muestra.</strong> <br></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modulos-y-sus-funciones">3. Módulos y sus Funciones</a><ul>
+<li><a class="reference internal" href="#proceso">3. 1 <code class="docutils literal notranslate"><span class="pre">proceso</span></code></a></li>
+<li><a class="reference internal" href="#id1">3. 2 <code class="docutils literal notranslate"><span class="pre">momentos</span></code></a></li>
+<li><a class="reference internal" href="#id2">3. 3 <code class="docutils literal notranslate"><span class="pre">estacionaridad</span></code></a></li>
+<li><a class="reference internal" href="#id3">3. 4 <code class="docutils literal notranslate"><span class="pre">espectro</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resultados">4. Resultados</a><ul>
+<li><a class="reference internal" href="#id4">4. 1 <code class="docutils literal notranslate"><span class="pre">proceso</span></code></a></li>
+<li><a class="reference internal" href="#momento">4. 2 <code class="docutils literal notranslate"><span class="pre">momento</span></code></a></li>
+<li><a class="reference internal" href="#id5">4. 3 <code class="docutils literal notranslate"><span class="pre">estacionaridad</span></code></a></li>
+<li><a class="reference internal" href="#id6">4. 4 <code class="docutils literal notranslate"><span class="pre">espectro</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#referencias">5. Referencias</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

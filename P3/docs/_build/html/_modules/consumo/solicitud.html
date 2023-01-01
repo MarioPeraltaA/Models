@@ -1,0 +1,803 @@
+<!doctype html>
+<html class="no-js" lang="es">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Índice" href="../../genindex.html" /><link rel="search" title="Búsqueda" href="../../search.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>consumo.solicitud - P3</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">P3</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">P3</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Búsqueda" name="q" aria-label="Búsqueda">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../instalacion.html">Creación del paquete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../P3.html">Proyecto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reporte.html">Variables aleatorias múltiples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../potencia.html">Módulo de potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../correlacion.html">Módulo de correlacion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../energia.html">Módulo de energía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solicitud.html">Módulo de solicitud</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Código fuente para consumo.solicitud</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Éste módulo solicita y ordena los datos de consumo de potencia.</span>
+
+<span class="sd">Puesto que el Centro Nacional de Control de la Energía (CENCE),</span>
+<span class="sd">publica los datos de consumo de potencia del</span>
+<span class="sd">Sistema Eléctrico Nacional (SEN) por medio de *servicios web*</span>
+<span class="sd">(API) de acceso libre y gratuito,</span>
+<span class="sd">con el paquete ``requests`` es posible obtener determinados datos</span>
+<span class="sd">de demanda y consumo de potencia [MW] para posteriores análisis.</span>
+<span class="sd">Tener en cuenta que para ordenar los datos en forma consecutiva</span>
+<span class="sd">el módulo descarga 24 archivos .csv uno por cada hora a lo largo</span>
+<span class="sd">de los días que el usuario seleccionó.</span>
+
+<span class="sd">Demanda</span>
+<span class="sd">    Cantidad de individuos haciendo uso del servicio.</span>
+<span class="sd">Consumo</span>
+<span class="sd">    Potencia (aparente) en megawatt [MW] que está siendo consumida.</span>
+<span class="sd">    Ejemplo. Cuando hay alto consumo no necesariamente hay alta demanda</span>
+<span class="sd">    si se asume una industria entera como un sólo cliente que está</span>
+<span class="sd">    haciendo uso del servicio.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>      <span class="c1"># Manipulación de datos</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>       <span class="c1"># Manejo de arreglos</span>
+<span class="c1"># Paquete para el manejo de intercambio de datos.</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="c1"># -----</span>
+<span class="c1"># 1. Función datos demanda:</span>
+<span class="c1"># -----</span>
+
+
+<div class="viewcode-block" id="datos_consumo"><a class="viewcode-back" href="../../solicitud.html#consumo.solicitud.datos_consumo">[documentos]</a><span class="k">def</span> <span class="nf">datos_consumo</span><span class="p">(</span><span class="n">dato_inicio</span><span class="p">,</span> <span class="n">dato_fin</span><span class="p">,</span> <span class="n">dias</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Solicita datos de potencia [MW] consumida.</span>
+
+<span class="sd">    Directamente desde la página del CENCE, para las fechas entre</span>
+<span class="sd">    los parámetros ``dato_inicio`` y ``dato_fin``, obtiene</span>
+<span class="sd">    los datos de consumo, que se encuentran en formato JSon</span>
+<span class="sd">    pero que python los convierte a un diccionario</span>
+<span class="sd">    por el método ``.json()``; hasta la primera hora del</span>
+<span class="sd">    último día inclusive. Luego ordena los datos de consumo por hora.</span>
+
+<span class="sd">    Formato fecha</span>
+<span class="sd">        (YYYYMMDD).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dato_inicio : cadena</span>
+<span class="sd">        e.g. 20190101.</span>
+<span class="sd">    dato_fin : cadena</span>
+<span class="sd">        e.g. 20190102.</span>
+<span class="sd">    dias : entero</span>
+<span class="sd">        Total de días sobre los que se desea obtener el consumo</span>
+<span class="sd">        a una hora particular, debe ser menor al lapso de fechas</span>
+<span class="sd">        especificadas anteriormente.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df_hr : DataFrame</span>
+<span class="sd">        Ordenado por hora. e.g el consumo a la hora 10</span>
+<span class="sd">        a lo largo de 365 días (para todas las 24 horas).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Construcción del url</span>
+    <span class="n">proto_url</span> <span class="o">=</span> <span class="s2">&quot;https://apps.grupoice.com/CenceWeb/data/sen/json/DemandaMW?&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;inicio&quot;</span><span class="p">:</span> <span class="n">dato_inicio</span><span class="p">,</span> <span class="s2">&quot;fin&quot;</span><span class="p">:</span> <span class="n">dato_fin</span><span class="p">}</span>
+    <span class="c1"># Hacer la solicitud GET y guardar un &quot;Response&quot; en la variable r</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">proto_url</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+    <span class="c1"># Extraer del dict que es devuelto por el método &lt;.json()&gt;,</span>
+    <span class="c1"># los datos filtrando por la llave &#39;data&#39;</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Crear dataframe de pandas</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+
+    <span class="c1"># Odenar DataFrame:</span>
+
+    <span class="c1"># Horas del día</span>
+    <span class="n">h_0</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 00:00:00.0&quot;</span>
+    <span class="n">h_1</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 01:00:00.0&quot;</span>
+    <span class="n">h_2</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 02:00:00.0&quot;</span>
+    <span class="n">h_3</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 03:00:00.0&quot;</span>
+    <span class="n">h_4</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 04:00:00.0&quot;</span>
+    <span class="n">h_5</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 05:00:00.0&quot;</span>
+    <span class="n">h_6</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 06:00:00.0&quot;</span>
+    <span class="n">h_7</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 07:00:00.0&quot;</span>
+    <span class="n">h_8</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 08:00:00.0&quot;</span>
+    <span class="n">h_9</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 09:00:00.0&quot;</span>
+    <span class="n">h_10</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 10:00:00.0&quot;</span>
+    <span class="n">h_11</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 11:00:00.0&quot;</span>
+    <span class="n">h_12</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 12:00:00.0&quot;</span>
+    <span class="n">h_13</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 13:00:00.0&quot;</span>
+    <span class="n">h_14</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 14:00:00.0&quot;</span>
+    <span class="n">h_15</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 15:00:00.0&quot;</span>
+    <span class="n">h_16</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 16:00:00.0&quot;</span>
+    <span class="n">h_17</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 17:00:00.0&quot;</span>
+    <span class="n">h_18</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 18:00:00.0&quot;</span>
+    <span class="n">h_19</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 19:00:00.0&quot;</span>
+    <span class="n">h_20</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 20:00:00.0&quot;</span>
+    <span class="n">h_21</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 21:00:00.0&quot;</span>
+    <span class="n">h_22</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 22:00:00.0&quot;</span>
+    <span class="n">h_23</span> <span class="o">=</span> <span class="s2">&quot;2019-01-01 23:00:00.0&quot;</span>
+
+    <span class="c1"># Selección de datos de columna</span>
+    <span class="n">dt_h_0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_0</span><span class="p">]</span>
+    <span class="n">dt_h_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_1</span><span class="p">]</span>
+    <span class="n">dt_h_2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_2</span><span class="p">]</span>
+    <span class="n">dt_h_3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_3</span><span class="p">]</span>
+    <span class="n">dt_h_4</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_4</span><span class="p">]</span>
+    <span class="n">dt_h_5</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_5</span><span class="p">]</span>
+    <span class="n">dt_h_6</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_6</span><span class="p">]</span>
+    <span class="n">dt_h_7</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_7</span><span class="p">]</span>
+    <span class="n">dt_h_8</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_8</span><span class="p">]</span>
+    <span class="n">dt_h_9</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_9</span><span class="p">]</span>
+    <span class="n">dt_h_10</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_10</span><span class="p">]</span>
+    <span class="n">dt_h_11</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_11</span><span class="p">]</span>
+    <span class="n">dt_h_12</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_12</span><span class="p">]</span>
+    <span class="n">dt_h_13</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_13</span><span class="p">]</span>
+    <span class="n">dt_h_14</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_14</span><span class="p">]</span>
+    <span class="n">dt_h_15</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_15</span><span class="p">]</span>
+    <span class="n">dt_h_16</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_16</span><span class="p">]</span>
+    <span class="n">dt_h_17</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_17</span><span class="p">]</span>
+    <span class="n">dt_h_18</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_18</span><span class="p">]</span>
+    <span class="n">dt_h_19</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_19</span><span class="p">]</span>
+    <span class="n">dt_h_20</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_20</span><span class="p">]</span>
+    <span class="n">dt_h_21</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_21</span><span class="p">]</span>
+    <span class="n">dt_h_22</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_22</span><span class="p">]</span>
+    <span class="n">dt_h_23</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">h_23</span><span class="p">]</span>
+
+    <span class="c1"># Creación de csv para manejo de datos extraídos</span>
+    <span class="n">dt_h_0</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_0.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_1</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_1.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_2</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_2.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_3</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_3.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_4</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_4.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_5</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_5.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_6</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_6.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_7</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_7.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_8</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_8.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_9</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_9.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_10</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_10.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_11</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_11.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_12</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_12.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_13</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_13.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_14</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_14.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_15</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_15.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_16</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_16.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_17</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_17.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_18</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_18.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_19</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_19.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_20</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_20.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_21</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_21.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_22</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_22.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dt_h_23</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_23.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Fechas iniciales</span>
+    <span class="n">out_0</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_0</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_1</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_2</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_3</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_3</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_4</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_4</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_5</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_5</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_6</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_6</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_7</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_7</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_8</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_8</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_9</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_9</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_10</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_10</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_11</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_11</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_12</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_12</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_13</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_13</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_14</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_14</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_15</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_15</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_16</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_16</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_17</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_17</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_18</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_18</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_19</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_19</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_20</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_20</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_21</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_21</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_22</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_22</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">out_23</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">h_23</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Contador de bucle</span>
+    <span class="n">cont</span> <span class="o">=</span> <span class="mi">1</span>     <span class="c1"># comenzar desde 1 porque no hay dia cero.</span>
+    <span class="c1"># Bucle para generación de csv con datos requeridos</span>
+    <span class="k">while</span> <span class="n">cont</span> <span class="o">&lt;</span> <span class="n">dias</span><span class="p">:</span>
+
+        <span class="c1"># 00H</span>
+        <span class="n">out_plus_0</span> <span class="o">=</span> <span class="n">out_0</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_0</span> <span class="o">=</span> <span class="n">out_plus_0</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_0</span> <span class="o">=</span> <span class="n">fechas_0</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_0</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_0</span><span class="p">]</span>
+        <span class="n">dt_h_0</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_0.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 01H</span>
+        <span class="n">out_plus_1</span> <span class="o">=</span> <span class="n">out_1</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_1</span> <span class="o">=</span> <span class="n">out_plus_1</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_1</span> <span class="o">=</span> <span class="n">fechas_1</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_1</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_1</span><span class="p">]</span>
+        <span class="n">dt_h_1</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_1.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 02H</span>
+        <span class="n">out_plus_2</span> <span class="o">=</span> <span class="n">out_2</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_2</span> <span class="o">=</span> <span class="n">out_plus_2</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_2</span> <span class="o">=</span> <span class="n">fechas_2</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_2</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_2</span><span class="p">]</span>
+        <span class="n">dt_h_2</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_2.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 03H</span>
+        <span class="n">out_plus_3</span> <span class="o">=</span> <span class="n">out_3</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_3</span> <span class="o">=</span> <span class="n">out_plus_3</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_3</span> <span class="o">=</span> <span class="n">fechas_3</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_3</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_3</span><span class="p">]</span>
+        <span class="n">dt_h_3</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_3.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 04H</span>
+        <span class="n">out_plus_4</span> <span class="o">=</span> <span class="n">out_4</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_4</span> <span class="o">=</span> <span class="n">out_plus_4</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_4</span> <span class="o">=</span> <span class="n">fechas_4</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_4</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_4</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_4</span><span class="p">]</span>
+        <span class="n">dt_h_4</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_4.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 05H</span>
+        <span class="n">out_plus_5</span> <span class="o">=</span> <span class="n">out_5</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_5</span> <span class="o">=</span> <span class="n">out_plus_5</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_5</span> <span class="o">=</span> <span class="n">fechas_5</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_5</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_5</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_5</span><span class="p">]</span>
+        <span class="n">dt_h_5</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_5.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 06H</span>
+        <span class="n">out_plus_6</span> <span class="o">=</span> <span class="n">out_6</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_6</span> <span class="o">=</span> <span class="n">out_plus_6</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_6</span> <span class="o">=</span> <span class="n">fechas_6</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_6</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_6</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_6</span><span class="p">]</span>
+        <span class="n">dt_h_6</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_6.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 07H</span>
+        <span class="n">out_plus_7</span> <span class="o">=</span> <span class="n">out_7</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_7</span> <span class="o">=</span> <span class="n">out_plus_7</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_7</span> <span class="o">=</span> <span class="n">fechas_7</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_7</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_7</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_7</span><span class="p">]</span>
+        <span class="n">dt_h_7</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_7.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 08H</span>
+        <span class="n">out_plus_8</span> <span class="o">=</span> <span class="n">out_8</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_8</span> <span class="o">=</span> <span class="n">out_plus_8</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_8</span> <span class="o">=</span> <span class="n">fechas_8</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_8</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_8</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_8</span><span class="p">]</span>
+        <span class="n">dt_h_8</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_8.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 9H</span>
+        <span class="n">out_plus_9</span> <span class="o">=</span> <span class="n">out_9</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_9</span> <span class="o">=</span> <span class="n">out_plus_9</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_9</span> <span class="o">=</span> <span class="n">fechas_9</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_9</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_9</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_9</span><span class="p">]</span>
+        <span class="n">dt_h_9</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_9.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                      <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 10H</span>
+        <span class="n">out_plus_10</span> <span class="o">=</span> <span class="n">out_10</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_10</span> <span class="o">=</span> <span class="n">out_plus_10</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_10</span> <span class="o">=</span> <span class="n">fechas_10</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_10</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_10</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_10</span><span class="p">]</span>
+        <span class="n">dt_h_10</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_10.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 11H</span>
+        <span class="n">out_plus_11</span> <span class="o">=</span> <span class="n">out_11</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_11</span> <span class="o">=</span> <span class="n">out_plus_11</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_11</span> <span class="o">=</span> <span class="n">fechas_11</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_11</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_11</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_11</span><span class="p">]</span>
+        <span class="n">dt_h_11</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_11.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 12H</span>
+        <span class="n">out_plus_12</span> <span class="o">=</span> <span class="n">out_12</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_12</span> <span class="o">=</span> <span class="n">out_plus_12</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_12</span> <span class="o">=</span> <span class="n">fechas_12</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_12</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_12</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_12</span><span class="p">]</span>
+        <span class="n">dt_h_12</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_12.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 13H</span>
+        <span class="n">out_plus_13</span> <span class="o">=</span> <span class="n">out_13</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_13</span> <span class="o">=</span> <span class="n">out_plus_13</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_13</span> <span class="o">=</span> <span class="n">fechas_13</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_13</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_13</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_13</span><span class="p">]</span>
+        <span class="n">dt_h_13</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_13.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 14H</span>
+        <span class="n">out_plus_14</span> <span class="o">=</span> <span class="n">out_14</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_14</span> <span class="o">=</span> <span class="n">out_plus_14</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_14</span> <span class="o">=</span> <span class="n">fechas_14</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_14</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_14</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_14</span><span class="p">]</span>
+        <span class="n">dt_h_14</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_14.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 15H</span>
+        <span class="n">out_plus_15</span> <span class="o">=</span> <span class="n">out_15</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_15</span> <span class="o">=</span> <span class="n">out_plus_15</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_15</span> <span class="o">=</span> <span class="n">fechas_15</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_15</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_15</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_15</span><span class="p">]</span>
+        <span class="n">dt_h_15</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_15.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 16H</span>
+        <span class="n">out_plus_16</span> <span class="o">=</span> <span class="n">out_16</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_16</span> <span class="o">=</span> <span class="n">out_plus_16</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_16</span> <span class="o">=</span> <span class="n">fechas_16</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_16</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_16</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_16</span><span class="p">]</span>
+        <span class="n">dt_h_16</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_16.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 17H</span>
+        <span class="n">out_plus_17</span> <span class="o">=</span> <span class="n">out_17</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_17</span> <span class="o">=</span> <span class="n">out_plus_17</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_17</span> <span class="o">=</span> <span class="n">fechas_17</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_17</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_17</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_17</span><span class="p">]</span>
+        <span class="n">dt_h_17</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_17.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 18H</span>
+        <span class="n">out_plus_18</span> <span class="o">=</span> <span class="n">out_18</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_18</span> <span class="o">=</span> <span class="n">out_plus_18</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_18</span> <span class="o">=</span> <span class="n">fechas_18</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_18</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_18</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_18</span><span class="p">]</span>
+        <span class="n">dt_h_18</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_18.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 19H</span>
+        <span class="n">out_plus_19</span> <span class="o">=</span> <span class="n">out_19</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_19</span> <span class="o">=</span> <span class="n">out_plus_19</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_19</span> <span class="o">=</span> <span class="n">fechas_19</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_19</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_19</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_19</span><span class="p">]</span>
+        <span class="n">dt_h_19</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_19.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 20H</span>
+        <span class="n">out_plus_20</span> <span class="o">=</span> <span class="n">out_20</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_20</span> <span class="o">=</span> <span class="n">out_plus_20</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_20</span> <span class="o">=</span> <span class="n">fechas_20</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_20</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_20</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_20</span><span class="p">]</span>
+        <span class="n">dt_h_20</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_20.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 21H</span>
+        <span class="n">out_plus_21</span> <span class="o">=</span> <span class="n">out_21</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_21</span> <span class="o">=</span> <span class="n">out_plus_21</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_21</span> <span class="o">=</span> <span class="n">fechas_21</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_21</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_21</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_21</span><span class="p">]</span>
+        <span class="n">dt_h_21</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_21.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 22H</span>
+        <span class="n">out_plus_22</span> <span class="o">=</span> <span class="n">out_22</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_22</span> <span class="o">=</span> <span class="n">out_plus_22</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_22</span> <span class="o">=</span> <span class="n">fechas_22</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_22</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_22</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_22</span><span class="p">]</span>
+        <span class="n">dt_h_22</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_22.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 23H</span>
+        <span class="n">out_plus_23</span> <span class="o">=</span> <span class="n">out_23</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">fechas_23</span> <span class="o">=</span> <span class="n">out_plus_23</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">output_23</span> <span class="o">=</span> <span class="n">fechas_23</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">fechas_23</span><span class="p">),</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="n">dt_h_23</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;fechaHora&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">output_23</span><span class="p">]</span>
+        <span class="n">dt_h_23</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_23.csv&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+                       <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">cont</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">cont</span> <span class="o">==</span> <span class="n">dias</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="c1"># Subir los datos de consumo ordenados por hora.</span>
+    <span class="c1"># Dataframe 00H</span>
+    <span class="n">dfh_0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_0.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 01H</span>
+    <span class="n">dfh_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_1.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 02H</span>
+    <span class="n">dfh_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_2.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 03H</span>
+    <span class="n">dfh_3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_3.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 04H</span>
+    <span class="n">dfh_4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_4.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 05H</span>
+    <span class="n">dfh_5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_5.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 06H</span>
+    <span class="n">dfh_6</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_6.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 07H</span>
+    <span class="n">dfh_7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_7.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 08H</span>
+    <span class="n">dfh_8</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_8.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 09H</span>
+    <span class="n">dfh_9</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_9.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 10H</span>
+    <span class="n">dfh_10</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_10.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 11H</span>
+    <span class="n">dfh_11</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_11.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 12H</span>
+    <span class="n">dfh_12</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_12.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 13H</span>
+    <span class="n">dfh_13</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_13.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 14H</span>
+    <span class="n">dfh_14</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_14.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 15H</span>
+    <span class="n">dfh_15</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_15.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 16H</span>
+    <span class="n">dfh_16</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_16.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 17H</span>
+    <span class="n">dfh_17</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_17.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 18H</span>
+    <span class="n">dfh_18</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_18.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 19H</span>
+    <span class="n">dfh_19</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_19.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 20H</span>
+    <span class="n">dfh_20</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_20.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 21H</span>
+    <span class="n">dfh_21</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_21.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 22H</span>
+    <span class="n">dfh_22</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_22.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dataframe 23H</span>
+    <span class="n">dfh_23</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;dt_h_23.csv&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Lista de Dataframe&#39;s:</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="n">dfh_0</span><span class="p">,</span> <span class="n">dfh_1</span><span class="p">,</span> <span class="n">dfh_2</span><span class="p">,</span> <span class="n">dfh_3</span><span class="p">,</span> <span class="n">dfh_4</span><span class="p">,</span> <span class="n">dfh_5</span><span class="p">,</span> <span class="n">dfh_6</span><span class="p">,</span>
+             <span class="n">dfh_7</span><span class="p">,</span> <span class="n">dfh_8</span><span class="p">,</span> <span class="n">dfh_9</span><span class="p">,</span> <span class="n">dfh_10</span><span class="p">,</span> <span class="n">dfh_11</span><span class="p">,</span> <span class="n">dfh_12</span><span class="p">,</span> <span class="n">dfh_13</span><span class="p">,</span>
+             <span class="n">dfh_14</span><span class="p">,</span> <span class="n">dfh_15</span><span class="p">,</span> <span class="n">dfh_16</span><span class="p">,</span> <span class="n">dfh_17</span><span class="p">,</span> <span class="n">dfh_18</span><span class="p">,</span> <span class="n">dfh_19</span><span class="p">,</span> <span class="n">dfh_20</span><span class="p">,</span>
+             <span class="n">dfh_21</span><span class="p">,</span> <span class="n">dfh_22</span><span class="p">,</span> <span class="n">dfh_23</span><span class="p">]</span>
+
+    <span class="c1"># Concatenarlos</span>
+    <span class="n">df_hr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_hr</span></div>
+
+<span class="c1"># -----</span>
+<span class="c1"># 2. Consumo a una hora específica</span>
+<span class="c1"># -----</span>
+
+
+<div class="viewcode-block" id="datos_hora"><a class="viewcode-back" href="../../solicitud.html#consumo.solicitud.datos_hora">[documentos]</a><span class="k">def</span> <span class="nf">datos_hora</span><span class="p">(</span><span class="n">hora</span><span class="p">,</span> <span class="n">dias</span><span class="p">,</span> <span class="n">df_hr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtener los datos de consumo de potencia de una hora particular.</span>
+
+<span class="sd">    La hora va de 0 - 24 (exclusivo) a lo largo de todo</span>
+<span class="sd">    el período de días especificados.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    hora : entero</span>
+<span class="sd">        e.g. de 0 a 24 (exclusivo).</span>
+<span class="sd">    dias : entero</span>
+<span class="sd">        Periodo de días deseados.</span>
+<span class="sd">    df_hr : DataFrame</span>
+<span class="sd">        Ya ordenado por horas.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    datos_hr : tupla</span>
+<span class="sd">        Tupla que contiene un arreglo, la hora y el día dados, cuyas</span>
+<span class="sd">        posiciones son:</span>
+
+<span class="sd">        - [0] Vector de consumo de potencia a una hora específica.</span>
+<span class="sd">        - [1] Hora especificada.</span>
+<span class="sd">        - [2] Cantidad de días seleccionados.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Crear vector vacío de la hora específica</span>
+    <span class="c1"># del tamaño de los días seleccionados.</span>
+
+    <span class="n">hora_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">dias</span><span class="p">)</span>
+
+    <span class="c1"># Almacenar el consumo de potencia (MW)</span>
+    <span class="c1"># a una hora específica a lo largo de los días dados.</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="n">dias</span> <span class="o">*</span> <span class="n">hora</span>
+    <span class="n">final</span> <span class="o">=</span> <span class="n">init</span> <span class="o">+</span> <span class="n">dias</span>
+    <span class="n">hora_x</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">df_hr</span><span class="p">[</span><span class="s1">&#39;MW&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">init</span><span class="p">:</span><span class="n">final</span><span class="p">]</span>
+
+    <span class="c1"># Retorna tupla de tamaño tres:</span>
+    <span class="n">datos_hr</span> <span class="o">=</span> <span class="p">(</span><span class="n">hora_x</span><span class="p">,</span> <span class="n">hora</span><span class="p">,</span> <span class="n">dias</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datos_hr</span></div>
+
+<span class="c1"># -----</span>
+<span class="c1"># 3. Consumo de potencia a cada hora</span>
+<span class="c1"># -----</span>
+
+
+<div class="viewcode-block" id="demanda"><a class="viewcode-back" href="../../solicitud.html#consumo.solicitud.demanda">[documentos]</a><span class="k">def</span> <span class="nf">demanda</span><span class="p">(</span><span class="n">horas</span><span class="p">,</span> <span class="n">dias</span><span class="p">,</span> <span class="n">df_hr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Arreglo de muestras de consumo cada hora.</span>
+
+<span class="sd">    Llama la función ``datos_hora()`` para cada hora</span>
+<span class="sd">    y almacena en una matriz el consumo de potencia</span>
+<span class="sd">    a dichas horas, donde las filas corresponden a los días</span>
+<span class="sd">    (registros) y las columnas a las horas (campos).</span>
+<span class="sd">    Retorna una matriz de datos de tamaño (dias, horas)</span>
+<span class="sd">    donde ``dias`` es la cantidad de días sobre los que se desea</span>
+<span class="sd">    requistrar los datos de la hora particular, debe ser</span>
+<span class="sd">    menor o igual a la cantidad de días disponibles en la base</span>
+<span class="sd">    de datos ``df_hr`` disponible y ``horas`` es la cantidad de horas</span>
+<span class="sd">    al día empezando desde la hora cero (0) y termina en la hora 23.</span>
+<span class="sd">    *e.g* si horas = 24 se refiere a un día.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    horas : entero</span>
+<span class="sd">        horas deseadas de 0 a 24 (exlusivo).</span>
+<span class="sd">    dias : entero</span>
+<span class="sd">        Se asumirá que 365 días corresponden a un año.</span>
+<span class="sd">    df_hr : DataFrame</span>
+<span class="sd">        Base de datos de la que se dispone.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pw_dia : ndarray</span>
+<span class="sd">        Matriz con los datos de consumo de</span>
+<span class="sd">        potencia (filas) a cada hora (columnas).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Matriz de consumo a cada hora durante un día</span>
+    <span class="n">pw_dia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">dias</span><span class="p">,</span> <span class="n">horas</span><span class="p">))</span>
+
+    <span class="c1"># Almacenar el consumo a lo largo de las horas del día</span>
+    <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">horas</span><span class="p">):</span>
+        <span class="c1"># Llamar función datos_hora()</span>
+        <span class="n">pw_dia</span><span class="p">[:,</span> <span class="n">hr</span><span class="p">],</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">datos_hora</span><span class="p">(</span><span class="n">hr</span><span class="p">,</span> <span class="n">dias</span><span class="p">,</span> <span class="n">df_hr</span><span class="p">)</span>
+
+    <span class="c1"># Retorna matriz de datos de consumo cada hora</span>
+    <span class="c1"># a lo largo de todos los días especificados.</span>
+    <span class="k">return</span> <span class="n">pw_dia</span></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Mario R. Peralta A.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,814 @@
+<!doctype html>
+<html class="no-js" lang="es">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="search.html" /><link rel="next" title="Variables aleatorias múltiples" href="reporte.html" /><link rel="prev" title="Creación del paquete" href="instalacion.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>Proyecto - P3</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">P3</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">P3</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Búsqueda" name="q" aria-label="Búsqueda">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Creación del paquete</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Proyecto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporte.html">Variables aleatorias múltiples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="potencia.html">Módulo de potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlacion.html">Módulo de correlacion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energia.html">Módulo de energía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solicitud.html">Módulo de solicitud</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars and line breaks on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+    white-space: pre;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Proyecto">
+<h1>Proyecto<a class="headerlink" href="#Proyecto" title="Enlace permanente a este encabezado">#</a></h1>
+<p>Este es el enunciado del proyecto, como referencia.</p>
+<section id="P3---Proyecto-3">
+<h2><code class="docutils literal notranslate"><span class="pre">P3</span></code> - <em>Proyecto 3</em><a class="headerlink" href="#P3---Proyecto-3" title="Enlace permanente a este encabezado">#</a></h2>
+<p><strong>Modelos Probabilísticos de Señales y Sistemas</strong> Segundo ciclo del 2022</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>Mario R. Peralta A.</strong></p></li>
+<li><p><strong>B75726</strong></p></li>
+<li><p>Grupo: <strong>3</strong></p></li>
+</ul>
+<blockquote>
+<div><p>Este es un ejercicio de análisis y modelado probabilístico de variables aleatorias múltiples con las herramientas de programación y cálculo numérico de Python.</p>
+</div></blockquote>
+<p><strong>Nota</strong>: Es recomendable revisar el tutorial <code class="docutils literal notranslate"><span class="pre">Py6</span></code> (disponible <a class="reference external" href="https://github.com/fabianabarca/python">aquí</a>) para conocer las bases de Python útiles en la ejecución de este laboratorio.</p>
+<hr class="docutils" />
+</section>
+<section id="Problema">
+<h2>Problema<a class="headerlink" href="#Problema" title="Enlace permanente a este encabezado">#</a></h2>
+<p>El Instituto Costarricense de Electricidad (ICE), por medio del Centro Nacional de Control de la Energía (CENCE), publica los datos de consumo de potencia del Sistema Eléctrico Nacional (SEN) por medio de <em>servicios web</em> (API) de acceso libre y gratuito.</p>
+<p>Entre las posibles solicitudes de datos está la información de consumo diario de potencia, registrado hora a hora para un periodo particular, que puede ser obtenida en formato JSON, y luce de la siguiente forma:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;descripcion&quot;: &quot;Consulta que devuelve la curva de demanda en un tiempo definido.&quot;,
+  &quot;fechaConsulta&quot;: &quot;2022-10-06T10:11 -0600&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;fechaHora&quot;: &quot;2019-01-01 00:00:00.0&quot;,
+      &quot;MW&quot;: 958.05,
+      &quot;MW_P&quot;: 937.6
+    },
+    {
+      &quot;fechaHora&quot;: &quot;2019-01-01 01:00:00.0&quot;,
+      &quot;MW&quot;: 917.04,
+      &quot;MW_P&quot;: 876.01
+    },
+    {
+      &quot;fechaHora&quot;: &quot;2019-01-01 02:00:00.0&quot;,
+      &quot;MW&quot;: 856.19,
+      &quot;MW_P&quot;: 830.11
+    },
+    ...
+    {
+      &quot;fechaHora&quot;: &quot;2019-12-31 23:00:00.0&quot;,
+      &quot;MW&quot;: 1056.74,
+      &quot;MW_P&quot;: 1018.2
+    },
+    {
+      &quot;fechaHora&quot;: &quot;2020-01-01 00:00:00.0&quot;,
+      &quot;MW&quot;: 978.31,
+      &quot;MW_P&quot;: 919
+    }
+  ],
+  &quot;_links&quot;: {
+    &quot;next&quot;: null,
+    &quot;previous&quot;: null,
+    &quot;self&quot;: &quot;https://apps.grupoice.com/CenceWeb/data/sen/json/DemandaMW?inicio=20190101&amp;fin=20200101&quot;
+  },
+  &quot;fuente&quot;: &quot;Centro Nacional de Control de Energía. Instituto Costarricense de Electricidad - CENCE.&quot;,
+  &quot;nombreConsulta&quot;: &quot;DemandaMW&quot;
+}
+</pre></div>
+</div>
+<p><strong>Nota</strong>: El uso de los servicios disponibles está documentado en la página <a class="reference external" href="https://apps.grupoice.com/CenceWeb/paginas/GuiaServiciosWeb.html#ejemplos">Guía del sistema proveedor de Servicios Web del CENCE</a>.</p>
+<section id="Objetivos">
+<h3>Objetivos<a class="headerlink" href="#Objetivos" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Este proyecto tiene el objetivo de determinar lo siguiente:</p>
+<ol class="arabic simple">
+<li><p>Un modelo de la distribución de consumo de potencia para <em>una hora particular del día</em>, junto con su visualización y estadísticas.</p></li>
+<li><p>Una comparación entre las distribuciones de consumo de potencia de <em>dos horas particulares del día</em>, por medio del cálculo numérico de una correlación y una visualización conjunta.</p></li>
+<li><p>Un modelo del <em>consumo semanal de energía</em> y una deducción de los parámetros de la distribución que modela el <em>consumo anual de energía</em>.</p></li>
+</ol>
+</section>
+<section id="Asignaciones">
+<h3>Asignaciones<a class="headerlink" href="#Asignaciones" title="Enlace permanente a este encabezado">#</a></h3>
+<ol class="arabic simple">
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">datos_demanda(inicio,</span> <span class="pre">fin)</span></code> capaz de importar datos de demanda (MW) directamente desde la API del CENCE en formato <code class="docutils literal notranslate"><span class="pre">JSON</span></code>, para las fechas entre <code class="docutils literal notranslate"><span class="pre">inicio</span></code> y <code class="docutils literal notranslate"><span class="pre">fin</span></code>, y capaz de convertir los datos en un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> para análisis posterior.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">datos_hora()</span></code> capaz de obtener los datos de consumo de potencia de una hora particular (0 - 24) a lo largo de todo el período de días disponible. Ejemplo: los datos del consumo de potencia (MW) para las 18:00 horas en 365 días.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">modelo_hora()</span></code> capaz de determinar un modelo probabilístico y sus parámetros de mejor ajuste para la distribución de consumo de potencia de una hora particular (0 - 24) a lo largo de todo el período de días disponible. Ejemplo: el modelo de distribución del consumo de potencia (MW) para las 18:00 horas en 365 días.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">estadisticas_hora()</span></code> capaz de determinar la media, la varianza, la desviación estándar, la inclinación y la kurtosis de los datos de consumo de potencia de una hora particular (0 - 24) a lo largo de todo el período de días disponible. Ejemplo: estadísticas de la distribución del consumo de potencia (MW) para las 18:00 horas en 365 días.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">visualizacion_hora()</span></code> capaz de graficar el histograma de distribución de consumo de potencia de una hora particular (0 - 24) a lo largo de todo el período de días disponible. Ejemplo: la distribución del consumo de potencia (MW) para las 18:00 horas en 365 días.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">correlacion_horas()</span></code> capaz de determinar el coeficiente de correlación entre dos horas particulares (0 - 24) a lo largo de todo el período de días disponible. Ejemplo: coeficiente de correlación entre las 18:00 horas y las 23:00 horas.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">visualizacion_horas()</span></code> capaz de graficar el histograma <em>bivariado</em> de distribución de consumo de potencia de <em>dos horas particulares</em> (0 - 24) a lo largo de todo el período de días disponible. Ejemplo: la distribución del consumo de potencia (MW) para las horas 18:00 y las 23:00 en 365 días.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">energia_semanal()</span></code> capaz de calcular la energía total consumida en períodos de siete días.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">modelo_energia_semanal()</span></code> capaz de determinar un modelo probabilístico y sus parámetros de mejor ajuste para la distribución de consumo de energía de una semana a lo largo de todo el período de días disponible. Ejemplo: el modelo de distribución del consumo energía en 53 semanas.</p></li>
+<li><p>(10 %) Implemente una función <code class="docutils literal notranslate"><span class="pre">modelo_energia_anual()</span></code> capaz de determinar los parámetros de mejor ajuste para la distribución de consumo de energía anual, conociendo el modelo de distribución probilística de consumo semanal, además muestra la gráfica de distribución. Ejemplo: el consumo anual de energía para el año en cuestión es la suma del consumo de energía de aproximadamente 52 semanas.</p></li>
+</ol>
+<section id="Diagrama-de-funciones">
+<h4>Diagrama de funciones<a class="headerlink" href="#Diagrama-de-funciones" title="Enlace permanente a este encabezado">#</a></h4>
+<center><p><img alt="Diagrama de funciones" class="no-scaled-link" src="https://mermaid.ink/img/pako:eNp1kctqwzAQRX9FaJ38gBcFE7ukBacFhW7kEAZrEgv0CJIcaI3_vbJsp69UCz3mnhlpdHvaWIE0o2cHl5bsi9qQOPLXp74fZzIM5BYi6zV5Zi-7uD6QnAsI1h8FajACDjM1MgUEeHSgMYHbGWytW6htEiqu493KfleqpJQcfQAhfZAN_Mgsk_7Gr9J3oOQHNNKav6U3vLHOofqS_axvpgLsTgX_fw-Mo0F3lnD0Y7ugZpRNjbClk_tUNWP5bwxMfMKBrqhGp0GK6EM_ptQ0tKixplncCjxBp0JNazNEFLpg2btpaBZchyvaXeL3YiEhOqhpdgLlb9FSyGDdQmI6VZPfyfbhEx0jpZ0?type=png" style="width: 350px;" /></p>
+</center></section>
+</section>
+<section id="Notas">
+<h3>Notas<a class="headerlink" href="#Notas" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p>Para este proyecto la información de consumo diario de potencia será la del año 2019, medido hora a hora desde el 1 de enero hasta el 31 de diciembre, inclusive. Aunque es posible utilizar años más recientes, la disrupción de la pandemia impide ver condiciones de mayor “normalidad”.</p></li>
+<li><p>Puede implementar cualquier función intermedia necesaria para las otras funciones requeridas en la figura 1.</p></li>
+<li><p>La asignación de hora es hecha con la función mostrada a continuación.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="k">def</span> <span class="nf">asignacion_horas</span><span class="p">(</span><span class="n">digitos</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Horas asignadas según carné.</span>
+
+<span class="sd">    Elige una hora A en periodo punta</span>
+<span class="sd">    y una hora B de los otros periodos,</span>
+<span class="sd">    con los dígitos del carné como &quot;seed&quot;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    digitos : entero</span>
+<span class="sd">        Número entero arbitrario como semilla.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    hrs_AB : tupla de números enteros</span>
+<span class="sd">        Posiciones:</span>
+
+<span class="sd">        0. hora_A</span>
+<span class="sd">        1. hora_B</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">75726</span><span class="p">)</span>
+    <span class="n">punta</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+    <span class="n">valle</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]</span>
+    <span class="n">nocturno</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+    <span class="n">otro</span> <span class="o">=</span> <span class="n">valle</span> <span class="o">+</span> <span class="n">nocturno</span>
+    <span class="n">hora_A</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">punta</span><span class="p">)</span>
+    <span class="n">hora_B</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">otro</span><span class="p">)</span>
+    <span class="n">hrs_AB</span> <span class="o">=</span> <span class="p">(</span><span class="n">hora_A</span><span class="p">,</span> <span class="n">hora_B</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hrs_AB</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">horas</span> <span class="o">=</span> <span class="n">asignacion_horas</span><span class="p">(</span><span class="mi">75726</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Las horas asignadas son </span><span class="si">{</span><span class="n">horas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> y </span><span class="si">{</span><span class="n">horas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Las horas asignadas son 18 y 10.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">asignacion_horas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Help on function asignacion_horas in module __main__:
+
+asignacion_horas(digitos)
+    Horas asignadas según carné.
+
+    Elige una hora A en periodo punta
+    y una hora B de los otros periodos,
+    con los dígitos del carné como &#34;seed&#34;
+
+    Parameters
+    ----------
+    digitos : entero
+        Número entero arbitrario como semilla.
+
+    Returns
+    -------
+    hrs_AB : tupla de números enteros
+        Posiciones:
+
+        0. hora_A
+        1. hora_B
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Programación-del-proyecto">
+<h2>Programación del proyecto<a class="headerlink" href="#Programación-del-proyecto" title="Enlace permanente a este encabezado">#</a></h2>
+<p>Este es un proyecto de programación funcional (basado en funciones). El propósito es también crear un paquete de Python que será llamado <code class="docutils literal notranslate"><span class="pre">consumo</span></code>, y será desarrollado de forma colaborativa con Git y GitHub. Este paquete tiene varios módulos, cuyas funciones están descritas en los módulos: <code class="docutils literal notranslate"><span class="pre">potencia</span></code>, <code class="docutils literal notranslate"><span class="pre">correlacion</span></code>, <code class="docutils literal notranslate"><span class="pre">energia</span></code> y <code class="docutils literal notranslate"><span class="pre">solicitud</span></code>.</p>
+<p>El repositorio tiene la siguiente estructura de directorios y archivos:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>P3/
+├─ setup.py
+├─ demandaMW_2019.json
+├─ consumo/
+│  ├─ __init__.py
+│  ├─ potencia.py
+│  ├─ correlacion.py
+│  ├─ energia.py
+│  ├─ solicitud.py
+├─ README.md
+├─ docs/
+├─ revision.py
+├─ P3.ipynb
+├─ .gitignore
+</pre></div>
+</div>
+<blockquote>
+<div><p>La revisión del proyecto se hará con el código de <code class="docutils literal notranslate"><span class="pre">revision.py</span></code>, que utiliza todas las funciones solicitadas.</p>
+</div></blockquote>
+</section>
+<section id="Documentación-del-proyecto">
+<h2>Documentación del proyecto<a class="headerlink" href="#Documentación-del-proyecto" title="Enlace permanente a este encabezado">#</a></h2>
+<p>Este proyecto será entregado con documentación completa en la forma de una página web, generados con <strong>Sphinx</strong>.</p>
+<hr class="docutils" />
+<p><strong>Forma de entrega</strong></p>
+<ul class="simple">
+<li><p>Este proyecto se entrega como un archivo <code class="docutils literal notranslate"><span class="pre">[carné].py</span></code>, el cual deberá ser posible de ejecutar y mostrar los resultados sin problemas en una instalación regular de Anaconda (si son necesarios algunos paquetes nuevos, favor indicarlo).</p></li>
+<li><p>La documentación de lo realizado será dentro del mismo código, en la forma de <a class="reference external" href="https://peps.python.org/pep-0257/">docstrings</a> (con más referencias al final de este documento).</p></li>
+</ul>
+<blockquote>
+<div><p>“Code is more often read than written.” (<em>Guido van Rossum</em>)</p>
+</div></blockquote>
+<section id="Referencias">
+<h3>Referencias<a class="headerlink" href="#Referencias" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://realpython.com/documenting-python-code/">Documenting Python Code: A Complete Guide</a></p></li>
+<li><p><a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google Python Style Guide: 3.8 Comments and Docstrings</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/development/contributing_docstring.html">pandas docstring guide</a></p></li>
+<li><p><a class="reference external" href="https://www.programiz.com/python-programming/docstrings">Programiz Python Docstrings</a></p></li>
+</ul>
+<p><strong>Notas sobre la presentación</strong></p>
+<p>Es necesario:</p>
+<ul class="simple">
+<li><p>Documentación rigurosa de la teoría utilizada para la resolución de los problemas. Por ejemplo: deben estar especificadas las fórmulas, reglas, desarrollos aritméticos u otra teoría utilizada en la programación. Esto se hace en la parte escrita del reporte del proyecto.</p></li>
+<li><p>En el caso de un reporte escrito (LaTeX u otro), también incluir los fragmentos de código que resuelven cada parte de las asignaciones.</p></li>
+<li><p>Comentarios exhaustivos dentro del código fuente del programa desarrollado. Generalmente, cada línea con una funcionalidad o acción distinta dentro del código debe ser explicada. Por ejemplo: la declaración de nuevas variables.</p></li>
+<li><p>Todas las gráficas deben tener ejes señalizados con el nombre de la variable y sus unidades.</p></li>
+<li><p>Estricto apego a <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> - <em>Style Guide for Python Code</em>, que define convenciones de escritura de la sintaxis de Python.</p></li>
+<li><p>Ortografía perfecta o, al menos, depurada. La ortografía será revisada tanto en la parte escrita como dentro del código en los comentarios. Nota: para el código fuente, Python utiliza por defecto la codificación UTF-8, que admite todos los signos de puntuación (y hasta emojis), de forma que no hay ninguna excusa para no escribir correctamente los comentarios con mayúsculas y tildes, etc. Ejemplo:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ¡Este es un comentario de una línea!</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Cuando se utilice Markdown o LaTeX, debe utilizarse la estructura para dar formato al texto. Por ejemplo: títulos, listas, fragmentos de código, citas textuales y todos los demás elementos.</p></li>
+<li><p>Cuando se utilice <em>docstrings</em>, debe utilizarse PEP-257 y alguna de las otras guías de estilo disponibles (Pandas, NumPy, Google, etc.).</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="reporte.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Variables aleatorias múltiples</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="instalacion.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Creación del paquete</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Mario R. Peralta A.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Proyecto</a><ul>
+<li><a class="reference internal" href="#P3---Proyecto-3"><code class="docutils literal notranslate"><span class="pre">P3</span></code> - <em>Proyecto 3</em></a></li>
+<li><a class="reference internal" href="#Problema">Problema</a><ul>
+<li><a class="reference internal" href="#Objetivos">Objetivos</a></li>
+<li><a class="reference internal" href="#Asignaciones">Asignaciones</a><ul>
+<li><a class="reference internal" href="#Diagrama-de-funciones">Diagrama de funciones</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Notas">Notas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Programación-del-proyecto">Programación del proyecto</a></li>
+<li><a class="reference internal" href="#Documentación-del-proyecto">Documentación del proyecto</a><ul>
+<li><a class="reference internal" href="#Referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
